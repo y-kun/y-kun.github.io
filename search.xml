@@ -4,11 +4,11 @@
   
     
     <entry>
-      <title>linux安装jdk1.8</title>
-      <link href="posts/3542552830/"/>
-      <url>posts/3542552830/</url>
+      <title>idea方法注释模板</title>
+      <link href="posts/3159180473/"/>
+      <url>posts/3159180473/</url>
       
-        <content type="html"><![CDATA[<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 进入到local目录，创建java文件夹并把jdk解压到该目录下</span></span><br><span class="line">[<span class="type">root</span>@<span class="type">shmily</span> ~]<span class="comment"># cd /usr/local</span></span><br><span class="line">[<span class="type">root</span>@<span class="type">shmily</span> <span class="type">local</span>]<span class="comment"># mkdir java</span></span><br><span class="line">[<span class="type">root</span>@<span class="type">shmily</span> <span class="type">local</span>]<span class="comment"># tar -zxvf jdk-8u161-linux-x64.tar.gz -C java</span></span><br><span class="line"><span class="comment"># 配置环境变量</span></span><br><span class="line">[<span class="type">root</span>@<span class="type">shmily</span> <span class="type">local</span>]<span class="comment"># vim /etc/profile</span></span><br><span class="line"><span class="comment"># 文件末尾添加内容：</span></span><br><span class="line"></span><br><span class="line">export JAVA_HOME=/usr/local/java/jdk1.<span class="number">8.0</span>_161</span><br><span class="line">export JRE_HOME=<span class="variable">$</span>&#123;JAVA_HOME&#125;/jre</span><br><span class="line">export CLASSPATH=.:<span class="variable">$</span>&#123;JAVA_HOME&#125;/lib:<span class="variable">$</span>&#123;JRE_HOME&#125;/lib:<span class="variable">$CLASSPATH</span></span><br><span class="line">export JAVA_PATH=<span class="variable">$</span>&#123;JAVA_HOME&#125;/bin:<span class="variable">$</span>&#123;JRE_HOME&#125;/bin</span><br><span class="line">export PATH=<span class="variable">$PATH:</span><span class="variable">$</span>&#123;JAVA_PATH&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment"># 执行命令使配置生效：</span></span><br><span class="line">[<span class="type">root</span>@<span class="type">shmily</span> <span class="type">local</span>]<span class="comment"># source /etc/profile</span></span><br><span class="line"><span class="comment"># 查看jdk是否安装完成：</span></span><br><span class="line">[<span class="type">root</span>@<span class="type">shmily</span> <span class="type">local</span>]<span class="comment"># java -version</span></span><br></pre></td></tr></table></figure>]]></content>
+        <content type="html"><![CDATA[<p><font color="#ff0000">File–&gt;Settings–&gt;Editor–&gt;Live Templates</font><br><img src= "/img/loading.gif" data-lazy-src="https://tvax1.sinaimg.cn/large/00724TQEgy1gqdgvm388zj30yp0jzq54.jpg" alt="在这里插入图片描述"><br><font color="#ff0000">新建组名</font><br><img src= "/img/loading.gif" data-lazy-src="https://tvax3.sinaimg.cn/large/00724TQEgy1gqdgvyow1oj30ag041mx1.jpg" alt="在这里插入图片描述"><br><font color="#ff0000">设置模板内容</font><img src= "/img/loading.gif" data-lazy-src="https://tva3.sinaimg.cn/large/00724TQEgy1gqdgw6w0ccj30yp0jz76v.jpg" alt="在这里插入图片描述"></p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">* </span><br><span class="line">* TODO</span><br><span class="line">* </span><br><span class="line">* @param $param$</span><br><span class="line">* @<span class="built_in">return</span> $<span class="built_in">return</span>$</span><br><span class="line">* @author $USER$</span><br><span class="line">* @since $DATE$ $TIME$</span><br><span class="line">**/</span><br></pre></td></tr></table></figure><p><font color="#ff0000">设置模板的应用场景</font><br><img src= "/img/loading.gif" data-lazy-src="https://tvax3.sinaimg.cn/large/00724TQEgy1gqdgweg1ozj30yp0jzn0g.jpg" alt="在这里插入图片描述"><br><font color="#ff0000">设置参数的获取方式</font><br><img src= "/img/loading.gif" data-lazy-src="https://tva1.sinaimg.cn/large/00724TQEgy1gqdgwjre9dj307t053mx2.jpg" alt="在这里插入图片描述"><br><img src= "/img/loading.gif" data-lazy-src="https://tva3.sinaimg.cn/large/00724TQEgy1gqdgwsqhnjj30fd07k3yy.jpg" alt="在这里插入图片描述"><br><font color="#ff0000">使用这种方法生成的注释参数类型为：</font><br><img src= "/img/loading.gif" data-lazy-src="https://tvax3.sinaimg.cn/large/00724TQEgy1gqdgx30jx3j307s057jrd.jpg" alt="在这里插入图片描述"><br><font color="#ff0000">如果想去除中括号，修改：</font><br><img src= "/img/loading.gif" data-lazy-src="https://tvax3.sinaimg.cn/large/00724TQEgy1gqdgx8ydusj30ff07m3yz.jpg" alt="在这里插入图片描述"></p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">groovyScript(<span class="string">&quot;def result=&#x27;&#x27;; def params=\&quot;<span class="variable">$&#123;_1&#125;</span>\&quot;.replaceAll(&#x27;[\\\\[|\\\\]|\\\\s]&#x27;, &#x27;&#x27;).split(&#x27;,&#x27;).toList(); for(i = 0; i &lt; params.size(); i++) &#123;</span></span><br><span class="line"><span class="string">if(i!=params.size()-1) result+= params[i]+&#x27;,&#x27;;</span></span><br><span class="line"><span class="string">else&#123;result+= params[i];return result;&#125;</span></span><br><span class="line"><span class="string">&#125;; return result&quot;</span>, methodParameters())</span><br></pre></td></tr></table></figure>]]></content>
       
       
       <categories>
@@ -20,9 +20,32 @@
       
         <tags>
             
-            <tag> java </tag>
+            <tag> 开发工具 </tag>
             
-            <tag> linux </tag>
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>IDEA常用插件</title>
+      <link href="posts/3162798155/"/>
+      <url>posts/3162798155/</url>
+      
+        <content type="html"><![CDATA[<p>lombok<br>free mybatis plugin<br>codeGlance 迷你缩放图<br>Alibaba Java Coding Guidelines 阿里巴巴的编码规约检查插件<br>Alibaba Cloud Toolkit 快速部署到服务器<br>Json Parser json串格式化工具<br>RESTfultoolkit 根据url 查找controller 快捷键：Ctrl \ or Ctrl Alt N</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> java </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 开发工具 </tag>
             
         </tags>
       
@@ -48,6 +71,33 @@
         <tags>
             
             <tag> java </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>linux安装jdk1.8</title>
+      <link href="posts/3542552830/"/>
+      <url>posts/3542552830/</url>
+      
+        <content type="html"><![CDATA[<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 进入到local目录，创建java文件夹并把jdk解压到该目录下</span></span><br><span class="line">[<span class="type">root</span>@<span class="type">shmily</span> ~]<span class="comment"># cd /usr/local</span></span><br><span class="line">[<span class="type">root</span>@<span class="type">shmily</span> <span class="type">local</span>]<span class="comment"># mkdir java</span></span><br><span class="line">[<span class="type">root</span>@<span class="type">shmily</span> <span class="type">local</span>]<span class="comment"># tar -zxvf jdk-8u161-linux-x64.tar.gz -C java</span></span><br><span class="line"><span class="comment"># 配置环境变量</span></span><br><span class="line">[<span class="type">root</span>@<span class="type">shmily</span> <span class="type">local</span>]<span class="comment"># vim /etc/profile</span></span><br><span class="line"><span class="comment"># 文件末尾添加内容：</span></span><br><span class="line"></span><br><span class="line">export JAVA_HOME=/usr/local/java/jdk1.<span class="number">8.0</span>_161</span><br><span class="line">export JRE_HOME=<span class="variable">$</span>&#123;JAVA_HOME&#125;/jre</span><br><span class="line">export CLASSPATH=.:<span class="variable">$</span>&#123;JAVA_HOME&#125;/lib:<span class="variable">$</span>&#123;JRE_HOME&#125;/lib:<span class="variable">$CLASSPATH</span></span><br><span class="line">export JAVA_PATH=<span class="variable">$</span>&#123;JAVA_HOME&#125;/bin:<span class="variable">$</span>&#123;JRE_HOME&#125;/bin</span><br><span class="line">export PATH=<span class="variable">$PATH:</span><span class="variable">$</span>&#123;JAVA_PATH&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment"># 执行命令使配置生效：</span></span><br><span class="line">[<span class="type">root</span>@<span class="type">shmily</span> <span class="type">local</span>]<span class="comment"># source /etc/profile</span></span><br><span class="line"><span class="comment"># 查看jdk是否安装完成：</span></span><br><span class="line">[<span class="type">root</span>@<span class="type">shmily</span> <span class="type">local</span>]<span class="comment"># java -version</span></span><br></pre></td></tr></table></figure>]]></content>
+      
+      
+      <categories>
+          
+          <category> java </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> java </tag>
+            
+            <tag> linux </tag>
             
         </tags>
       
