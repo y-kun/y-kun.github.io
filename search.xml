@@ -4,6 +4,216 @@
   
     
     <entry>
+      <title>PHP安装openssl模块在wordpress中发送邮件</title>
+      <link href="posts/619199573/"/>
+      <url>posts/619199573/</url>
+      
+        <content type="html"><![CDATA[<h1 id="下载WP-Mail-STMP插件并配置信息"><a href="#下载WP-Mail-STMP插件并配置信息" class="headerlink" title="下载WP Mail STMP插件并配置信息"></a>下载WP Mail STMP插件并配置信息</h1><p><img src= "/img/loading.gif" data-lazy-src="https://wx4.sinaimg.cn/large/00724TQEgy1gn4ldjebssj30mz0ett92.jpg"><strong><font color="#ff0000">STMP密码填写授权码，参考：<a href="https://service.mail.qq.com/cgi-bin/help?subtype=1&&id=28&&no=1001256">https://service.mail.qq.com/cgi-bin/help?subtype=1&amp;&amp;id=28&amp;&amp;no=1001256</a></font></strong></p><h1 id="发送测试邮件失败"><a href="#发送测试邮件失败" class="headerlink" title="发送测试邮件失败"></a>发送测试邮件失败</h1><p><img src= "/img/loading.gif" data-lazy-src="https://wx4.sinaimg.cn/large/00724TQEgy1gn4lejpafaj30sg0csteo.jpg"><font color="#ff0000"><strong>这里只是说明连接不上STMP，并没有说明是什么原因造成连接不上，所以模仿发送邮件流程，进行测试</strong></font></p><h1 id="失败原因为缺少”openssl”"><a href="#失败原因为缺少”openssl”" class="headerlink" title="失败原因为缺少”openssl”"></a>失败原因为缺少”openssl”</h1><p><img src= "/img/loading.gif" data-lazy-src="https://wx1.sinaimg.cn/large/00724TQEgy1gn4lf7vnx3j30f6082aab.jpg"></p><h3 id="安装”openssl”"><a href="#安装”openssl”" class="headerlink" title="安装”openssl”"></a><strong>安装”openssl”</strong></h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">yum install openssl </span><br><span class="line">yum install openssl-devel</span><br><span class="line"><span class="meta"></span></span><br><span class="line"><span class="meta">#</span><span class="bash"> 编译php扩展</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> /usr/<span class="built_in">local</span>/php为php安装位置</span></span><br><span class="line">/usr/local/php/bin/phpize</span><br><span class="line"><span class="meta">#</span><span class="bash"> 执行后，发现错误 无法找到config.m4 ，config0.m4就是config.m4，复制一份即可</span></span><br><span class="line">cp /usr/local/php/ext/openssl/config0.m4 /usr/local/php/ext/openssl/config.m4</span><br><span class="line"><span class="meta">#</span><span class="bash"> 再次出错：Cannot find autoconf. Please check your autoconf installation and the <span class="variable">$PHP_AUTOCONF</span> environment variable. Then, rerun this script</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> 安装autoconf模块再编译即可</span></span><br><span class="line">yum install autoconf</span><br><span class="line"><span class="meta"></span></span><br><span class="line"><span class="meta">#</span><span class="bash"> 配置并安装openssl</span></span><br><span class="line">./configure --with-openssl --with-php-config=/usr/local/php/bin/php-config</span><br><span class="line">make &amp;&amp; make install</span><br><span class="line"><span class="meta">#</span><span class="bash"> 运行完成后最后一行会提示生成的openssl.so文件目录位置：</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> Installing shared extensions: /usr/<span class="built_in">local</span>/php/lib/php/extensions/no-debug-zts-20160303/</span></span><br><span class="line"><span class="meta"></span></span><br><span class="line"><span class="meta">#</span><span class="bash"> 修改php.ini</span></span><br><span class="line">vim /usr/local/php/bin/php.ini</span><br><span class="line"><span class="meta">#</span><span class="bash"> 添加这句：</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> extension=/usr/<span class="built_in">local</span>/php/lib/php/extensions/no-debug-zts-20160303/openssl.so</span></span><br><span class="line"><span class="meta"></span></span><br><span class="line"><span class="meta">#</span><span class="bash"> 启动php-fpm</span></span><br><span class="line">./php-fpm</span><br><span class="line"><span class="meta">#</span><span class="bash"> 依然报错缺少openssl，最后发现虽然php.ini配置完成了，但是启动时并没有用上，所以指定配置文件启动</span></span><br><span class="line">./php-fpm -c /usr/local/php/bin/php.ini</span><br></pre></td></tr></table></figure>]]></content>
+      
+      
+      <categories>
+          
+          <category> wordpress </category>
+          
+      </categories>
+      
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>vue脚手架搭建项目</title>
+      <link href="posts/1451956170/"/>
+      <url>posts/1451956170/</url>
+      
+        <content type="html"><![CDATA[<p>vue init webpack <font color="#ff0000">demo</font>（项目名小写）</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">Project name # 项目名：默认为上一步&quot;webpack demo&quot;中的demo</span><br><span class="line"></span><br><span class="line">Project description # 项目介绍：默认 A Vue.js project</span><br><span class="line"></span><br><span class="line">Author # 作者名</span><br><span class="line"></span><br><span class="line">Vue build（Use arrow keys）</span><br><span class="line">　Runtime + Compiler：recommended for most users # 运行加编译</span><br><span class="line">　Runtime-only：about 6KB lighter min+gzip，but templaters（or any Vue-spcific HTML）are ONLY allowed in .Vue files - render functions are required elsewhere # 仅运行</span><br><span class="line"></span><br><span class="line">Install vue-router ? （Y/n） # 安装Vue路由</span><br><span class="line"></span><br><span class="line">Use ESLint to lint your code ? （Y/n） # 使用ESlint对代码进行校验</span><br><span class="line"></span><br><span class="line">Pick an ESLint preset (Use arrow keys) # 选择ESLint预设，编写vue项目时的代码风格</span><br><span class="line">　Standard (https://github.com/standard/standard)　# Standard</span><br><span class="line">　Airbnb (https://github.com/airbnb/javascript) # Airbnb</span><br><span class="line">　none (configure it yourself) # 自己配置</span><br><span class="line"></span><br><span class="line">Set up unit tests （Y/n） # 使用单元测试</span><br><span class="line"></span><br><span class="line">Setup e2e tests with Nightwatch？ （Y/n） # 使用e2e测试</span><br><span class="line"></span><br><span class="line">Should we run npm install fr you after the project has been created?（recommended）（Use arrow keys）</span><br><span class="line">　Yes，use Npm # 使用npm</span><br><span class="line">　Yes，use Yarn # 使用yarn</span><br><span class="line">　No，I whill handle that myself # 自己配置</span><br></pre></td></tr></table></figure><p>cd demo</p><p>npm install</p><p>安装element-ui，可选</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install element-ui -S</span><br></pre></td></tr></table></figure><p>安装scss，可选</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> 安装node-sass</span></span><br><span class="line">npm install node-sass --save-dev</span><br><span class="line"><span class="meta">#</span><span class="bash"> 安装sass-loader</span></span><br><span class="line">npm install sass-loader --save-dev</span><br><span class="line"><span class="meta">#</span><span class="bash"> 在build/webpack.base.conf.js文件中的rules模块中添加：</span></span><br><span class="line">&#123;</span><br><span class="line">　test: /\.scss$/,</span><br><span class="line">　loaders: [&#x27;style&#x27;, &#x27;css&#x27;, &#x27;sass&#x27;]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p>安装scss后启动报错：<br><font color="#ff0000">Node Sass version 5.0.0 is incompatible with ^4.0.0.</font><br>解决：</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> 卸载原sass</span></span><br><span class="line">npm uninstall node-sass</span><br><span class="line"><span class="meta">#</span><span class="bash"> 重新安装 4.X.X 版本的sass</span></span><br><span class="line">npm install node-sass@4.14.1</span><br><span class="line"></span><br></pre></td></tr></table></figure>]]></content>
+      
+      
+      <categories>
+          
+          <category> vue </category>
+          
+      </categories>
+      
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>jmeter address already in use</title>
+      <link href="posts/2408300312/"/>
+      <url>posts/2408300312/</url>
+      
+        <content type="html"><![CDATA[<p><font color="#ff0000">原因：windows本身提供的端口访问机制问题<br>windows提供给TCP/IP链接的端口为1024-5000，并且要四分钟来循环回收他们。就导致在短时间内跑大量请求将端口占满。</font></p><p>解决：</p><ol><li>cmd中，用regedit打开注册表</li><li>在HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\Tcpip\Parameters下：<ol><li>右击parameters，添加一个新的DWORD，名字为MaxUserPort</li><li>然后双击MaxUserPort，输入数值数据为65534，基数选择十进制如果是分布式运行的话，控制机器和负载机器都需要这样操作哦）</li><li>修改配置完毕之后记得重启机器才会生效</li></ol></li></ol><p><font color="#ff0000">tips：另一个 TCPTimedWaitDelay 注册表参数确定关闭的端口等待多长时间才能重用关闭的端口。</font></p><p>windows官方链接：<a href="https://docs.microsoft.com/zh-cn/troubleshoot/windows-client/networking/connect-tcp-greater-than-5000-error-wsaenobufs-10055">https://docs.microsoft.com/zh-cn/troubleshoot/windows-client/networking/connect-tcp-greater-than-5000-error-wsaenobufs-10055</a></p>]]></content>
+      
+      
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>git使用指定的账号克隆仓库</title>
+      <link href="posts/2846882250/"/>
+      <url>posts/2846882250/</url>
+      
+        <content type="html"><![CDATA[<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git <span class="built_in">clone</span> -b dev https://username:password@gitee.com/仓库地址</span><br></pre></td></tr></table></figure>]]></content>
+      
+      
+      <categories>
+          
+          <category> git </category>
+          
+      </categories>
+      
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>Error response from daemon service endpoint with name xxx already exists.</title>
+      <link href="posts/710246348/"/>
+      <url>posts/710246348/</url>
+      
+        <content type="html"><![CDATA[<p><font color="#ff0000">原因：容器被删除，网络仍在占用</font></p><p>解决：</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> 删除容器</span></span><br><span class="line">docker rm -f 容器ID</span><br><span class="line"><span class="meta">#</span><span class="bash"> 查看容器的网络占用情况</span></span><br><span class="line">docker network inspect 网络模式（例：bridge）</span><br><span class="line"><span class="meta">#</span><span class="bash"> 清理此容器的网络占用</span></span><br><span class="line">docker network disconnect --force 网络模式（例：bridge） 容器名称（例：mysql）</span><br><span class="line"><span class="meta">#</span><span class="bash"> 检查是否还有同名容器占用</span></span><br><span class="line">docker network inspect 网络模式</span><br><span class="line"><span class="meta">#</span><span class="bash"> 重新构建容器</span></span><br></pre></td></tr></table></figure>]]></content>
+      
+      
+      <categories>
+          
+          <category> docker </category>
+          
+      </categories>
+      
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>el-date-picker设置默认日期</title>
+      <link href="posts/3812763588/"/>
+      <url>posts/3812763588/</url>
+      
+        <content type="html"><![CDATA[<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// js变量</span></span><br><span class="line"><span class="attr">start_date</span>: [<span class="keyword">new</span> <span class="built_in">Date</span>(<span class="built_in">Date</span>.now()), <span class="keyword">new</span> <span class="built_in">Date</span>(<span class="built_in">Date</span>.now())]</span><br></pre></td></tr></table></figure><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">el-date-picker</span></span></span><br><span class="line"><span class="tag">　<span class="attr">v-model</span>=<span class="string">&quot;defaultDate&quot;</span></span></span><br><span class="line"><span class="tag">　<span class="attr">type</span>=<span class="string">&quot;daterange&quot;</span></span></span><br><span class="line"><span class="tag">　<span class="attr">align</span>=<span class="string">&quot;right&quot;</span></span></span><br><span class="line"><span class="tag">　<span class="attr">unlink-panels</span></span></span><br><span class="line"><span class="tag">　<span class="attr">range-separator</span>=<span class="string">&quot;--&quot;</span></span></span><br><span class="line"><span class="tag">　<span class="attr">start-placeholder</span>=<span class="string">&quot;开始日期&quot;</span></span></span><br><span class="line"><span class="tag">　<span class="attr">end-placeholder</span>=<span class="string">&quot;结束日期&quot;</span></span></span><br><span class="line"><span class="tag">　<span class="attr">:picker-options</span>=<span class="string">&quot;pickerOptions&quot;</span></span></span><br><span class="line"><span class="tag">　<span class="attr">format</span>=<span class="string">&quot;yyyy-MM-dd&quot;</span></span></span><br><span class="line"><span class="tag">/&gt;</span></span><br></pre></td></tr></table></figure><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 把yyyy/MM/dd转为yyyy-MM-dd</span></span><br><span class="line">start_date[<span class="number">1</span>].toLocaleDateString().replace(<span class="regexp">/\//g</span>, <span class="string">&#x27;-&#x27;</span>)</span><br></pre></td></tr></table></figure>]]></content>
+      
+      
+      <categories>
+          
+          <category> element-ui </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> el-date-picker </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>el-table使用sort-method进行排序</title>
+      <link href="posts/1600405551/"/>
+      <url>posts/1600405551/</url>
+      
+        <content type="html"><![CDATA[<h1 id="由于sort-method在Table-column-Attributes中，所以应使用-sort-method而不是-sort-method，且必须添加sortable属性"><a href="#由于sort-method在Table-column-Attributes中，所以应使用-sort-method而不是-sort-method，且必须添加sortable属性" class="headerlink" title="由于sort-method在Table-column Attributes中，所以应使用:sort-method而不是@sort-method，且必须添加sortable属性"></a>由于sort-method在Table-column Attributes中，所以应使用<font color="#ff0000">:sort-method</font>而不是@sort-method，且必须添加<font color="#ff0000">sortable</font>属性</h1><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">el-table-column</span> <span class="attr">sortable</span> <span class="attr">label</span>=<span class="string">&quot;客单价(元)&quot;</span> <span class="attr">:sort-method</span>=<span class="string">&quot;sortByPrice&quot;</span> <span class="attr">min-width</span>=<span class="string">&quot;100&quot;</span> <span class="attr">align</span>=<span class="string">&quot;center&quot;</span>&gt;</span></span><br><span class="line">　<span class="tag">&lt;<span class="name">template</span> <span class="attr">slot-scope</span>=<span class="string">&quot;scope&quot;</span>&gt;</span></span><br><span class="line">　　<span class="tag">&lt;<span class="name">span</span> <span class="attr">v-if</span>=<span class="string">&quot;scope.row.collection_amount!==0&quot;</span>&gt;</span>&#123;&#123; (scope.row.collection_amount/scope.row.collection_num)/100 &#x27; moneyFilter &#125;&#125;　 </span><br><span class="line">　　<span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br><span class="line">　　<span class="tag">&lt;<span class="name">span</span> <span class="attr">v-else</span>&gt;</span>0.00<span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br><span class="line">　<span class="tag">&lt;/<span class="name">template</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">el-table-column</span>&gt;</span></span><br></pre></td></tr></table></figure><h1 id="判断大小并返回"><a href="#判断大小并返回" class="headerlink" title="判断大小并返回"></a>判断大小并返回</h1><p><font color="#ff0000">踩坑：返回值应为数值，而不是boolean</font></p><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 根据客单价排序</span></span><br><span class="line"><span class="function"><span class="title">sortByPrice</span>(<span class="params">row, row1</span>)</span> &#123;</span><br><span class="line">　<span class="keyword">if</span> (row.collection_amount === <span class="number">0</span>) &#123;</span><br><span class="line">　　<span class="keyword">return</span> -<span class="number">1</span></span><br><span class="line">　&#125;</span><br><span class="line">　<span class="keyword">if</span> ((row.collection_amount / row.collection_num) &lt; (row1.collection_amount / row1.collection_num)) &#123;</span><br><span class="line">　　<span class="keyword">return</span> -<span class="number">1</span></span><br><span class="line">　&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">　　<span class="keyword">return</span> <span class="number">1</span></span><br><span class="line">　&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
+      
+      
+      <categories>
+          
+          <category> element-ui </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> el-table </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>spring boot使用p6spy打印sql语句</title>
+      <link href="posts/1296037854/"/>
+      <url>posts/1296037854/</url>
+      
+        <content type="html"><![CDATA[<h1 id="添加依赖"><a href="#添加依赖" class="headerlink" title="添加依赖"></a>添加依赖</h1><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;dependency&gt;     </span><br><span class="line">　&lt;groupId&gt;p6spy&lt;/groupId&gt;     </span><br><span class="line">　&lt;artifactId&gt;p6spy&lt;/artifactId&gt;     </span><br><span class="line">　&lt;version&gt;<span class="number">3.8</span><span class="number">.0</span>&lt;/version&gt; </span><br><span class="line">&lt;/dependency&gt;</span><br></pre></td></tr></table></figure><h1 id="修改mysql数据库连接"><a href="#修改mysql数据库连接" class="headerlink" title="修改mysql数据库连接"></a>修改mysql数据库连接</h1><figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">spring:</span>   </span><br><span class="line">　<span class="attr">datasource:</span>     </span><br><span class="line">　　<span class="attr">driver-class-name:</span> <span class="string">com.p6spy.engine.spy.P6SpyDriver</span>     </span><br><span class="line">　　<span class="attr">url:</span> <span class="string">jdbc:p6spy:mysql://xx.xx.xx.xx:3306</span></span><br></pre></td></tr></table></figure><h1 id="添加spy-properties配置文件"><a href="#添加spy-properties配置文件" class="headerlink" title="添加spy.properties配置文件"></a>添加<font color="#ff0000">spy.properties</font>配置文件</h1><figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#3.2.1以上使用</span></span><br><span class="line"><span class="string">modulelist=com.baomidou.mybatisplus.extension.p6spy.MybatisPlusLogFactory,com.p6spy.engine.outage.P6OutageFactory</span></span><br><span class="line"><span class="comment">#3.2.1以下使用或者不配置</span></span><br><span class="line"><span class="comment">#modulelist=com.p6spy.engine.logging.P6LogFactory,com.p6spy.engine.outage.P6OutageFactory</span></span><br><span class="line"><span class="comment"># 自定义日志打印</span></span><br><span class="line"><span class="string">logMessageFormat=com.baomidou.mybatisplus.extension.p6spy.P6SpyLogger</span></span><br><span class="line"><span class="comment">#日志输出到控制台</span></span><br><span class="line"><span class="string">appender=com.baomidou.mybatisplus.extension.p6spy.StdoutLogger</span></span><br><span class="line"><span class="comment"># 使用日志系统记录 sql</span></span><br><span class="line"><span class="comment">#appender=com.p6spy.engine.spy.appender.Slf4JLogger</span></span><br><span class="line"><span class="comment"># 设置 p6spy driver 代理</span></span><br><span class="line"><span class="string">deregisterdrivers=true</span></span><br><span class="line"><span class="comment"># 取消JDBC URL前缀</span></span><br><span class="line"><span class="string">useprefix=true</span></span><br><span class="line"><span class="comment"># 配置记录 Log 例外,可去掉的结果集有error,info,batch,debug,statement,commit,rollback,result,resultset.</span></span><br><span class="line"><span class="string">excludecategories=info,debug,result,commit,resultset</span></span><br><span class="line"><span class="comment"># 日期格式</span></span><br><span class="line"><span class="string">dateformat=yyyy-MM-dd</span> <span class="string">HH:mm:ss</span></span><br><span class="line"><span class="comment"># 实际驱动可多个</span></span><br><span class="line"><span class="comment">#driverlist=org.h2.Driver</span></span><br><span class="line"><span class="comment"># 是否开启慢SQL记录</span></span><br><span class="line"><span class="string">outagedetection=true</span></span><br><span class="line"><span class="comment"># 慢SQL记录标准 2 秒</span></span><br><span class="line"><span class="string">outagedetectioninterval=2</span></span><br></pre></td></tr></table></figure>]]></content>
+      
+      
+      
+        <tags>
+            
+            <tag> spring boot </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>vue-admin-template打包部署及跳过登录验证</title>
+      <link href="posts/1908717661/"/>
+      <url>posts/1908717661/</url>
+      
+        <content type="html"><![CDATA[<h1 id="修改vue-config-js"><a href="#修改vue-config-js" class="headerlink" title="修改vue.config.js"></a>修改vue.config.js</h1><p><img src= "/img/loading.gif" data-lazy-src="https://wx4.sinaimg.cn/large/00724TQEgy1gn4nm3pr2yj30eu08sjrp.jpg"><br><font color="#ff0000"><strong>将publicPath的值改为’./‘(设置打包后的静态资源为相对路径,避免加载不到css、js导致页面白屏)</strong><br><strong>outputDir：打包后的文件夹名</strong></font><strong><font color="#ff0000"><br>assetsDir：打包后的静态资源文件夹名</font></strong></p><h1 id="三个文件中的VUE-APP-BASE-API改为自己的请求地址"><a href="#三个文件中的VUE-APP-BASE-API改为自己的请求地址" class="headerlink" title="三个文件中的VUE_APP_BASE_API改为自己的请求地址"></a>三个文件中的<font color="#ff0000">VUE_APP_BASE_API</font>改为自己的请求地址</h1><p><img src= "/img/loading.gif" data-lazy-src="https://wx1.sinaimg.cn/large/00724TQEgy1gn4nmw56m1j30l3098wet.jpg"></p><h1 id="修改登录请求接口"><a href="#修改登录请求接口" class="headerlink" title="修改登录请求接口"></a>修改登录请求接口</h1><p><img src= "/img/loading.gif" data-lazy-src="https://wx3.sinaimg.cn/large/00724TQEgy1gn4nng5mvoj30jt0ekt9q.jpg"></p><h1 id="注释掉src-main-js中此段代码"><a href="#注释掉src-main-js中此段代码" class="headerlink" title="注释掉src/main.js中此段代码"></a>注释掉<font color="#ff0000">src/main.js</font>中此段代码</h1><p><img src= "/img/loading.gif" data-lazy-src="https://wx4.sinaimg.cn/large/00724TQEgy1gn4nnzxf4hj30gm08f0t0.jpg"><br><span style="color:#ff0000">不使用mock数据，使用自己的接口数据</span></p><h1 id="修改util-request-js中的code判断，改为自己后端返回的code"><a href="#修改util-request-js中的code判断，改为自己后端返回的code" class="headerlink" title="修改util/request.js中的code判断，改为自己后端返回的code"></a>修改<font color="#ff0000">util/request.js</font>中的code判断，改为自己后端返回的code</h1><p><img src= "/img/loading.gif" data-lazy-src="https://wx1.sinaimg.cn/large/00724TQEgy1gn4nol5glsj30gv0a4t95.jpg"></p><h1 id="如需跳过登录直接进入dashboard页面，将-src-permission-js中的hasToken直接赋值为true即可-即if判断为true"><a href="#如需跳过登录直接进入dashboard页面，将-src-permission-js中的hasToken直接赋值为true即可-即if判断为true" class="headerlink" title="如需跳过登录直接进入dashboard页面，将/src/permission.js中的hasToken直接赋值为true即可(即if判断为true)"></a>如需跳过登录直接进入dashboard页面，将<font color="#ff0000">/src/permission.js</font><strong>中的</strong><font color="#ff0000">hasToken</font>直接赋值为<font color="#ff0000">true</font>即可(即if判断为true)</h1><p><img src= "/img/loading.gif" data-lazy-src="https://wx1.sinaimg.cn/large/00724TQEgy1gn4np3q6d2j30gb0aiaaj.jpg"></p>]]></content>
+      
+      
+      <categories>
+          
+          <category> vue </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> vue </tag>
+            
+            <tag> element-ui </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>java把base64转图片保存</title>
+      <link href="posts/1256897339/"/>
+      <url>posts/1256897339/</url>
+      
+        <content type="html"><![CDATA[<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line">Long shopId = productVo.getShopId();</span><br><span class="line">String imageName = shopId + <span class="string">&quot;/&quot;</span> + IdUtil.simpleUUID() + <span class="string">&quot;.png&quot;</span>;</span><br><span class="line">File file = <span class="keyword">new</span> File(LOCAL_URL);</span><br><span class="line">OutputStream outputStream = <span class="keyword">null</span>;</span><br><span class="line">BASE64Decoder decoder = <span class="keyword">new</span> BASE64Decoder();</span><br><span class="line"><span class="keyword">try</span> &#123;</span><br><span class="line"><span class="keyword">if</span> (!file.exists()) &#123;</span><br><span class="line">file.mkdirs();</span><br><span class="line">&#125;</span><br><span class="line">file = <span class="keyword">new</span> File(LOCAL_URL + imageName);</span><br><span class="line">String baseStr = productVo.getPicUrl();</span><br><span class="line"><span class="comment">// 前台在用Ajax传base64值的时候会把base64中的+换成空格，所以需要替换回来。</span></span><br><span class="line">String baseValue = baseStr.replaceAll(<span class="string">&quot; &quot;</span>, <span class="string">&quot;+&quot;</span>);</span><br><span class="line"><span class="comment">// 解密</span></span><br><span class="line"><span class="keyword">byte</span>[] b = decoder.decodeBuffer(baseValue.replace(<span class="string">&quot;data:image/jpeg;base64,&quot;</span>, <span class="string">&quot;&quot;</span>));</span><br><span class="line"><span class="comment">// 处理数据</span></span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; b.length; ++i) &#123;</span><br><span class="line"><span class="keyword">if</span> (b[i] &lt; <span class="number">0</span>) &#123;</span><br><span class="line">b[i] += <span class="number">256</span>;</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br><span class="line">outputStream = <span class="keyword">new</span> FileOutputStream(file);</span><br><span class="line">outputStream.write(b);</span><br><span class="line">outputStream.flush();</span><br><span class="line">&#125; <span class="keyword">catch</span> (IOException e) &#123;</span><br><span class="line">e.printStackTrace();</span><br><span class="line">&#125; <span class="keyword">finally</span> &#123;</span><br><span class="line"><span class="keyword">try</span> &#123;</span><br><span class="line">outputStream.close();</span><br><span class="line">&#125; <span class="keyword">catch</span> (IOException e) &#123;</span><br><span class="line">e.printStackTrace();</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br><span class="line">product.setPicUrl(REMOTE_URL + imageName);</span><br></pre></td></tr></table></figure>]]></content>
+      
+      
+      <categories>
+          
+          <category> java </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> base64 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>application/x-www-form-urlencoded请求参数格式</title>
       <link href="posts/2242584043/"/>
       <url>posts/2242584043/</url>
@@ -42,7 +252,7 @@
     
     
     <entry>
-      <title>指定sshkey访问远程仓库</title>
+      <title>git指定sshkey访问远程仓库</title>
       <link href="posts/undefined/"/>
       <url>posts/undefined/</url>
       
@@ -78,6 +288,8 @@
         <tags>
             
             <tag> vue </tag>
+            
+            <tag> element-ui </tag>
             
         </tags>
       
@@ -162,7 +374,7 @@
     
     
     <entry>
-      <title>DatePicker禁用某个日期之前的时间</title>
+      <title>el-date-picker禁用某个日期之前的时间</title>
       <link href="posts/1302172676/"/>
       <url>posts/1302172676/</url>
       
