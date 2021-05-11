@@ -1,0 +1,8 @@
+class:
+  class_name: 友情链接
+  link_list:
+    1:
+      name: Benefit
+      link: https://www.liuwuyi.xyz/
+      avatar: https://thirdqq.qlogo.cn/g?b=qq&nk=1404809810&s=100
+      descr: 花有重开日，人无在少年

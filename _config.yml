@@ -7,14 +7,17 @@ title: coding且秃头66
 subtitle: '人生苦短   及时行乐'
 description: '记录日常踩坑...'
 keywords:
-author: John Doe
+author: kun
 language: zh-CN
 timezone: 'Asia/Shanghai'
 
 # URL
 ## Set your site url here. For example, if you use GitHub Page, set url as 'https://username.github.io/project'
-url: http://example.com
-permalink: :year/:month/:day/:title/
+url: https://blog.kunkun.cool/
+permalink: posts/:abbrlink/
+abbrlink:
+  alg: crc32 #support crc16(default) and crc32
+  rep: dec   #support dec(default) and hex
 permalink_defaults:
 pretty_urls:
   trailing_index: true # Set to false to remove trailing 'index.html' from permalinks

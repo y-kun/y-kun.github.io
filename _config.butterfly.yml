@@ -8,13 +8,14 @@
 
 menu:
   首页: / || fas fa-home
-  文章: /archives/ || fas fa-archive
-  # Tags: /tags/ || fas fa-tags
+  # 文章: /archives/ || fas fa-archive
+  标签: /tags/ || fas fa-tags
   分类: /categories/ || fas fa-folder-open
   # List||fas fa-list:
   #   - Music || /music/ || fas fa-music
   #   - Movie || /movies/ || fas fa-video
   友链: /link/ || fas fa-link
+  # 关于: /about/ || fas fa-about
   # About: /about/ || fas fa-heart
 
 # Hide the child menu items in mobile sidebar
@@ -23,7 +24,7 @@ hide_sidebar_menu_child: false
 # Code Blocks (代碼相關)
 # --------------------------------------
 
-highlight_theme: light #  darker / pale night / light / ocean / mac / mac light / false
+highlight_theme: mac #  darker / pale night / light / ocean / mac / mac light / false
 highlight_copy: true # copy button
 highlight_lang: true # show the code language
 highlight_shrink: false # true: shrink the code blocks / false: expand the code blocks | none: expand code blocks and hide the button
@@ -32,10 +33,10 @@ code_word_wrap: false
 # copy settings
 # copyright: Add the copyright information after copied content (複製的內容後面加上版權信息)
 copy:
-  enable: false
+  enable: true
   copyright:
-    enable: false
-    limit_count: 50
+    enable: true
+    limit_count: 20 # 字数限制，当复製文字大于这个字数限制时，将在复製的内容后面加上版权信息
 
 # social settings (社交圖標設置)
 # formal:
@@ -55,7 +56,10 @@ algolia_search:
 
 # Local search
 local_search:
-  enable: false
+  enable: true
+  labels:
+    input_placeholder: 搜索文章
+    hits_empty: "没有查到相关内容: ${query}" # 如果没有查到相关内容显示
 
 # Math (數學)
 # --------------------------------------
@@ -83,11 +87,11 @@ favicon: /img/favicon.png
 
 # Avatar (頭像)
 avatar:
-  img: https://wx4.sinaimg.cn/small/00724TQEgy1gn5hijyo75j30bx0bwjs1.jpg
+  img: /img/avatar.png
   effect: false
 
 # Disable all banner image
-disable_top_img: false
+disable_top_img: true
 
 # The banner image of home page
 index_img:
@@ -144,7 +148,7 @@ post_meta:
     date_type: created # created or updated or both 主頁文章日期是創建日或者更新日或都顯示
     date_format: date # date/relative 顯示日期還是相對日期
     categories: true # true or false 主頁是否顯示分類
-    tags: false # true or false 主頁是否顯示標籤
+    tags: true # true or false 主頁是否顯示標籤
     label: true # true or false 顯示描述性文字
   post:
     date_type: both # created or updated or both 文章頁日期是創建日或者更新日或都顯示
@@ -155,7 +159,7 @@ post_meta:
 
 # wordcount (字數統計)
 wordcount:
-  enable: false
+  enable: true
   post_wordcount: true
   min2read: true
   total_wordcount: true
@@ -176,7 +180,7 @@ index_post_content:
 toc:
   enable: true
   number: true
-  style_simple: false
+  style_simple: true
 
 post_copyright:
   enable: true
@@ -260,7 +264,7 @@ comments:
   # Up to two comments system, the first will be shown as default
   # Choose: Disqus/Disqusjs/Livere/Gitalk/Valine/Waline/Utterances/Facebook Comments/Twikoo
   use:
-  # - Valine
+  - Valine
   # - Disqus
   text: true # Display the comment name next to the button
   # lazyload: The comment system will be load when comment element enters the browser's viewport.
@@ -308,18 +312,18 @@ gitalk:
 # valine
 # https://valine.js.org
 valine:
-  appId: # leancloud application app id
-  appKey: # leancloud application app key
+  appId: b0vQ3jaSknYsvJBVmcWiVKI1-gzGzoHsz # leancloud application app id
+  appKey: 20EgGTFpY65bCfky3OeJoMR8 # leancloud application app key
   pageSize: 10 # comment list page size
   avatar: monsterid # gravatar style https://valine.js.org/#/avatar
-  lang: en # i18n: zh-CN/zh-TW/en/ja
+  lang: zh-CN # i18n: zh-CN/zh-TW/en/ja
   placeholder: Please leave your footprints # valine comment input placeholder (like: Please leave your footprints)
   guest_info: nick,mail,link # valine comment header info (nick/mail/link)
-  recordIP: false # Record reviewer IP
+  recordIP: true # Record reviewer IP
   serverURLs: # This configuration is suitable for domestic custom domain name users, overseas version will be automatically detected (no need to manually fill in)
   bg: # valine background
-  emojiCDN: # emoji CDN
-  enableQQ: false # enable the Nickname box to automatically get QQ Nickname and QQ Avatar
+  emojiCDN: '//i0.hdslb.com/bfs/emote/' # emoji CDN
+  enableQQ: true # enable the Nickname box to automatically get QQ Nickname and QQ Avatar
   requiredFields: nick,mail # required fields (nick/mail)
   option:
 
@@ -366,7 +370,7 @@ twikoo:
 chat_btn: false
 
 # The origin chat button is displayed when scrolling up, and the button is hidden when scrolling down
-chat_hide_show: false
+chat_hide_show: true
 
 # chatra
 # https://chatra.io/
@@ -404,7 +408,7 @@ footer:
   owner:
     enable: true
     since: 2020
-  custom_text:
+  custom_text: <a href="https://beian.miit.gov.cn/"><span>豫ICP备20013152号</span></a>
   copyright: true # Copyright of theme and framework
 
 # Analysis
@@ -412,7 +416,7 @@ footer:
 
 # Baidu Analytics
 # https://tongji.baidu.com/web/welcome/login
-baidu_analytics:
+baidu_analytics: a66817764e82b82d3ab90940141f57eb
 
 # Google Analytics
 # https://analytics.google.com/analytics/web/
@@ -538,12 +542,12 @@ canvas_ribbon:
 # Fluttering Ribbon (動態彩帶)
 canvas_fluttering_ribbon:
   enable: false
-  mobile: false
+  mobile: true
 
 # canvas_nest
 # https://github.com/hustcc/canvas-nest.js
 canvas_nest:
-  enable: false
+  enable: true
   color: '0,0,255' #color of lines, default: '0,0,0'; RGB values: (R,G,B).(note: use ',' to separate.)
   opacity: 0.7 # the opacity of line (0~1), default: 0.5.
   zIndex: -1 # z-index property of the background, default: -1.
@@ -553,16 +557,16 @@ canvas_nest:
 # Typewriter Effect (打字效果)
 # https://github.com/disjukr/activate-power-mode
 activate_power_mode:
-  enable: false
+  enable: true
   colorful: true # open particle animation (冒光特效)
-  shake: true #  open shake (抖動特效)
+  shake: false #  open shake (抖動特效)
   mobile: false
 
 # Mouse click effects: fireworks (鼠標點擊效果: 煙火特效)
 fireworks:
-  enable: false
+  enable: true
   zIndex: 9999 # -1 or 9999
-  mobile: false
+  mobile: true
 
 # Mouse click effects: Heart symbol (鼠標點擊效果: 愛心)
 click_heart:
@@ -613,11 +617,11 @@ hr_icon:
 
 # the subtitle on homepage (主頁subtitle)
 subtitle:
-  enable: false
+  enable: true
   # Typewriter Effect (打字效果)
   effect: true
   # loop (循環打字)
-  loop: true
+  loop: false
   # source調用第三方服務
   # source: false 關閉調用
   # source: 1  調用搏天api的隨機語錄（簡體）
@@ -630,10 +634,10 @@ subtitle:
   # 如果有英文雙引號' " ',請使用轉義字元 &quot;
   # 開頭不允許轉義字元，如需要，請把整個句子用雙引號包住
   # 如果關閉打字效果，subtitle只會顯示sub的第一行文字
-  sub:
+  sub: 人生苦短   及时行乐
 
 # Loading Animation (加載動畫)
-preloader: false
+preloader: true
 
 # aside (側邊欄)
 # --------------------------------------
@@ -648,12 +652,12 @@ aside:
     enable: true
     description:
     button:
-      enable: true
+      enable: false
       icon: fab fa-github
       text: Follow Me
       link: https://github.com/xxxxxx
   card_announcement:
-    enable: true
+    enable: false
     content: This is my Blog
   card_recent_post:
     enable: true
@@ -668,7 +672,7 @@ aside:
   card_tags:
     enable: true
     limit: 40 # if set 0 will show all
-    color: false
+    color: true
     sort_order: # Don't modify the setting unless you know how it works
   card_archives:
     enable: true
@@ -693,7 +697,7 @@ busuanzi:
 # Time difference between publish date and now (網頁運行時間)
 # Formal: Month/Day/Year Time or Year/Month/Day Time
 runtimeshow:
-  enable: false
+  enable: true
   publish_date:
 
 # Aside widget - Newest Comments
@@ -725,7 +729,7 @@ change_font_size: false
 translate:
   enable: false
   # The text of a button
-  default: 繁
+  default: 简
   # the language of website (1 - Traditional Chinese/ 2 - Simplified Chinese）
   defaultEncoding: 2
   # Time delay
@@ -747,7 +751,7 @@ darkmode:
   # autoChangeMode: 1  Following System Settings, if the system doesn't support dark mode, it will switch dark mode between 6 pm to 6 am
   # autoChangeMode: 2  Switch dark mode between 6 pm to 6 am
   # autoChangeMode: false
-  autoChangeMode: false
+  autoChangeMode: 1
 
 # Lightbox (圖片大圖查看模式)
 # --------------------------------------
@@ -814,25 +818,25 @@ aplayerInject:
 # position 彈窗位置
 # 可選 top-left / top-center / top-right / bottom-left / bottom-center / bottom-right
 snackbar:
-  enable: false
-  position: bottom-left
+  enable: true
+  position: top-right
   bg_light: '#49b1f5' # The background color of Toast Notification in light mode
   bg_dark: '#121212' # The background color of Toast Notification in dark mode
 
 # https://instant.page/
 # prefetch (預加載)
-instantpage: false
+instantpage: true
 
 # https://github.com/vinta/pangu.js
 # Insert a space between Chinese character and English character (中英文之間添加空格)
 pangu:
-  enable: false
-  field: site # site/post
+  enable: true
+  field: post # site/post
 
 # Lazyload (圖片懶加載)
 # https://github.com/verlok/lazyload
 lazyload:
-  enable: false
+  enable: true
   post: /img/loading.gif
 
 # PWA

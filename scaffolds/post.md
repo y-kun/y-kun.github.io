@@ -1,5 +1,9 @@
 ---
 title: {{ title }}
 date: {{ date }}
-tags:
+categories: 
+tags: 
 ---
+
+<meta name="referrer" content="no-referrer" />
+
