@@ -62,7 +62,7 @@ export function login(data) {
 ```
 
 # src/utils/request.js
-### 注意：**<font color="#ff0000">if (res.code !== 20000)</font>**　code需改为后端返回的值
+### 注意：<font color="#ff0000">if (res.code !== 20000)</font>　code需改为后端返回的值
 
 ```javascript
 response => { 
