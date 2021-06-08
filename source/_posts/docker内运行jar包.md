@@ -21,7 +21,8 @@ docker run -d -p 8108:8108 -e TZ=Asia/Shanghai \
 -v /home/jar/xxx.jar:/home/xxx.jar \
 -v /data/jar/logs:/data/logs \
 --name xxx \
---net docker-net --ip 172.18.0.2 java:8 java -jar /home/jar/xxx.jar
+--net docker-net --ip 172.18.0.2 java:8 java -jar /home/xxx.jar
 # 如果未创建自定义网络，--net docker-net可以去掉
+# jar包指定的路径是docker内部路径
 ```
 
