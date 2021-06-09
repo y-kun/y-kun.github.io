@@ -20,6 +20,22 @@ docker run -p 80:80 -p443:443 --name nginx \
 
 # 配置：
 
+## 代理本地端口：
+
+```shell
+# 如果使用docker需要使用私网或公网ip，localhost和127.0.0.1无效
+location / {
+    proxy_pass http://172.18.200.59:8108;
+    proxy_set_header X-Forwarded-Proto $scheme;
+    proxy_set_header X-Forwarded-Port $server_port;
+    proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+    proxy_set_header Upgrade $http_upgrade;
+    proxy_set_header Connection "upgrade";
+}
+```
+
+
+
 ## 文件配置：
 
 ```shell
