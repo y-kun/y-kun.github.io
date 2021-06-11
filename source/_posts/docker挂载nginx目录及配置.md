@@ -41,19 +41,19 @@ location / {
 ```shell
 # 打开文件
 	location /a {
-	alias /usr/local/test;
+	root /usr/local/test;
 	index test.txt;
 }
 
 # 打开文件夹
 location /b {
-	alias /usr/local/test/;
+	root /usr/local/test/;
 	autoindex on;
 }
 
 # 下载文件
 location /c {
-	alias /usr/local/test/test.txt;
+	root /usr/local/test/test.txt;
 }
 ```
 
@@ -79,6 +79,19 @@ server {
         index  index.html;
     }
 
+}
+```
+
+## 打包vue后刷新404：
+
+```shell
+location / {
+	root /usr/share/nginx/html;
+	try_files $uri $uri/ @router;
+	index index.html;
+}
+location @router {
+	rewrite ^.*$ /index.html last;
 }
 ```
 

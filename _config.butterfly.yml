@@ -35,7 +35,7 @@ code_word_wrap: false
 copy:
   enable: true
   copyright:
-    enable: true
+    enable: false
     limit_count: 20 # 字数限制，当复製文字大于这个字数限制时，将在复製的内容后面加上版权信息
 
 # social settings (社交圖標設置)
